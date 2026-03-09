@@ -1,8 +1,9 @@
-Rewards Application
+###Rewards Application
 
 A Spring Boot application for managing and calculating customer reward points based on purchase history. Supports RESTful APIs, async processing, and secure endpoints.
 
-Features  
+####Features  
+
 Calculate reward points for customers over a configurable period.  
 Retrieve purchase details asynchronously.  
 RESTful API endpoints with validation.  
@@ -12,29 +13,27 @@ Unit tests with JUnit and Mockito.
 Async processing with @EnableAsync.  
 
 
-Tech Stack
+####Tech Stack
 
-Java 21
+Java 21  
+Spring Boot 4.x  
+Spring Data JPA  
+Spring Web MVC   
+ModelMapper  
+H2 In memory database  
+JUnit 5, Mockito    
+Lombok  
 
-Spring Boot 4.x
-Spring Data JPA
-Spring Web MVC
-Spring Security
-ModelMapper
-MySQL (runtime) / H2 (test)
-JUnit 5, Mockito
-Lombok
+####API Endpoints
 
-API Endpoints
+GET /rewards/points  
+Query reward points for a customer.  
+Parameters: emailId, noOfMonths, fromDate, toDate  
 
-GET /rewards/points
-Query reward points for a customer.
-Parameters: emailId, noOfMonths, fromDate, toDate
+GET /rewards/purchase-details  
+Retrieve purchase details asynchronously.  
+Parameter: emailId  
 
-GET /rewards/purchase-details
-Retrieve purchase details asynchronously.
-Parameter: emailId
+####Testing
 
-Testing
-
-Developed Testing using Junit and Mockito
+Developed Testing using Junit and Mockito  
