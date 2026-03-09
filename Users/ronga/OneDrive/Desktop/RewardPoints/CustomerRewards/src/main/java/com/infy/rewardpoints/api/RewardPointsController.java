@@ -40,7 +40,7 @@ public class RewardPointsController {
 
         @RequestParam(required = false)
         @Min(value = 1, message = "Number of months must be atleast 1")
-        @Max(value = 1, message = "Number of months must be at most 3")
+        @Max(value = 3, message = "Number of months must be at most 3")
         Integer noOfMonths,
 
         @RequestParam(required =false)
