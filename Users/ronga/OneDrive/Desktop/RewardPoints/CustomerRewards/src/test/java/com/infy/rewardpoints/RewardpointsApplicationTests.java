@@ -33,7 +33,7 @@ class RewardServiceImplTest {
     @Test
     void calculateRewardPointsWhenNoPurchases() {
 
-        String email = "user@example.com";
+        String email = "ash.rongali@gmail.com";
         LocalDate from = LocalDate.of(2026, 1, 1);
         LocalDate to = LocalDate.of(2026, 3, 1);
         when(rewardPointsRepository.findByEmailIdAndDateOfPurchaseBetween(eq(email), eq(from), eq(to))).thenReturn(List.of());
@@ -45,13 +45,13 @@ class RewardServiceImplTest {
     @Test
     void calculateRewardPointsComputesMonthlyAndTotalPoints() throws Exception {
 
-        String email = "user@example.com";
+        String email = "mahesh@gmail.com";
         LocalDate to = LocalDate.of(2026, 3, 31);
         Integer months = 2;
         LocalDate expectedFrom = to.minusMonths(months);
-        RewardPoints janHigh = purchase(1, email, "User", LocalDate.of(2026, 1, 15), 120); 
-        RewardPoints janMid = purchase(2, email, "User", LocalDate.of(2026, 1, 20), 70);  
-        RewardPoints febLow = purchase(3, email, "User", LocalDate.of(2026, 2, 5), 40);   
+        RewardPoints janHigh = purchase(1, email, "Mahesh", LocalDate.of(2026, 1, 15), 120); 
+        RewardPoints janMid = purchase(2, email, "Mahesh", LocalDate.of(2026, 1, 20), 70);  
+        RewardPoints febLow = purchase(3, email, "Mahesh", LocalDate.of(2026, 2, 5), 40);   
 		
         when(rewardPointsRepository.findByEmailIdAndDateOfPurchaseBetween(eq(email), any(LocalDate.class), eq(to)))
                 .thenReturn(List.of(janHigh, janMid, febLow));
@@ -68,10 +68,10 @@ class RewardServiceImplTest {
 
     @Test
     void calculateRewardPointsUsesExplicitFromDate() throws Exception {
-        String email = "user@example.com";
+        String email = "Hari.panakala@gmail.com";
         LocalDate from = LocalDate.of(2026, 1, 1);
         LocalDate to = LocalDate.of(2026, 1, 31);
-        RewardPoints purchase = purchase(1, email, "User", LocalDate.of(2026, 1, 10), 55); // 5 pts
+        RewardPoints purchase = purchase(1, email, "Hari", LocalDate.of(2026, 1, 10), 55); // 5 pts
         when(rewardPointsRepository.findByEmailIdAndDateOfPurchaseBetween(eq(email), eq(from), eq(to))).thenReturn(List.of(purchase));
         String result = rewardService.calculateRewardPoints(email, 99, from, to);
         assertTrue(result.contains("January: 5 points"), result);
@@ -81,9 +81,9 @@ class RewardServiceImplTest {
 
     @Test
     void getPurchaseDetailsWhenPurchasesExist() throws Exception {
-        String email = "user@example.com";
-        RewardPoints purchase1 = purchase(1, email, "User One", LocalDate.of(2026, 1, 15), 120);
-        RewardPoints purchase2 = purchase(2, email, "User One", LocalDate.of(2026, 2, 20), 70);
+        String email = "krishna.rongala@outlook.com";
+        RewardPoints purchase1 = purchase(1, email, "Krishna", LocalDate.of(2026, 1, 15), 120);
+        RewardPoints purchase2 = purchase(2, email, "Krishna", LocalDate.of(2026, 2, 20), 70);
         when(rewardPointsRepository.findByEmailId(email)).thenReturn(List.of(purchase1, purchase2));
         var future = rewardService.getPurchaseDetails(email);
         var dtos = future.join();
@@ -94,8 +94,8 @@ class RewardServiceImplTest {
 
     @Test
     void getPurchaseDetailsReturnsSingleDTOWhenOnePurchaseExists() throws Exception {
-        String email = "single@example.com";
-        RewardPoints purchase = purchase(1, email, "Single User", LocalDate.of(2026, 3, 10), 200);
+        String email = "sainath.vanga@gmail.com";
+        RewardPoints purchase = purchase(1, email, "Sainath", LocalDate.of(2026, 3, 10), 200);
         when(rewardPointsRepository.findByEmailId(email)).thenReturn(List.of(purchase));
         var future = rewardService.getPurchaseDetails(email);
         var dtos = future.join();
