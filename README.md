@@ -32,7 +32,8 @@ This application has 2 endpoints which will perform two different tasks
 1. GET http://localhost:8080/rewards/points  
    Required Parameters  -  emailId  
    Optional Parameters  -  noOfMonths, fromDate, toDate  
-   Different Scenarios  
+   Different Scenarios
+   
    Scenario - 1
    When only email is given.    
    Request :  
@@ -42,7 +43,8 @@ This application has 2 endpoints which will perform two different tasks
      January: 274 points  
      February: 16 points  
      March: 140 points  
-     Total: 430 points    
+     Total: 430 points
+    
    Scenario - 2   
    when email and number of months given. It will calculate todays date and calculate the points before the noOfMonths.  
    Request :  
@@ -52,7 +54,8 @@ This application has 2 endpoints which will perform two different tasks
      January: 134 points  
      February: 16 points  
      March: 140 points  
-     Total: 290 points  
+     Total: 290 points
+   
    Scenario - 3  
       When fromDate and toDate is given.  
    Request :  
