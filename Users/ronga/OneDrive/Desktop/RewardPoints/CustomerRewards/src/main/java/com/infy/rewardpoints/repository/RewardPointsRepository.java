@@ -10,7 +10,7 @@ import com.infy.rewardpoints.entity.RewardPoints;
 @Repository
 public interface RewardPointsRepository extends CrudRepository<RewardPoints,Integer>{
 
-    public List<RewardPoints> findByEmailIdAndDateOfPurchaseBetween(String emailId, LocalDate fromDate, LocalDate toDate);
+    public List<RewardPoints> findByCustomerIdAndDateOfPurchaseBetween(Integer customerId, LocalDate fromDate, LocalDate toDate);
 
-    public List<RewardPoints> findByEmailId(String emailId);
+    public List<RewardPoints> findByCustomerId(Integer customerId);
 }

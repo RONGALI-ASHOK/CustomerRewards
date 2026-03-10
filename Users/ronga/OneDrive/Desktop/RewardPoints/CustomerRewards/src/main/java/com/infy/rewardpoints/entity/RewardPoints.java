@@ -18,6 +18,8 @@ public class RewardPoints {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="serialNumber")
     private Integer serialNumber;
+    @Column(name="customerId")
+    private Integer customerId;
     @Column(name="emailId")
     private String emailId;
     @Column(name="name")
