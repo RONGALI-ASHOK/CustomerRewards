@@ -21,7 +21,7 @@ Spring Data JPA
 Spring Web MVC   
 ModelMapper  
 H2 In memory database  
-JUnit 5, Mockito    
+JUnit 5, Mockito, WebMVC  
 Lombok  
 
 #### API Endpoints  
@@ -30,47 +30,147 @@ http://localhost:8080/rewards
 
 This application has 2 endpoints which will perform two different tasks  
 1. GET http://localhost:8080/rewards/points  
-   Required Parameters  -  emailId  
+   Required Parameters  -  customerId  
    Optional Parameters  -  noOfMonths, fromDate, toDate  
    Different Scenarios
    
    Scenario - 1
-   When only email is given.    
+   When only customerId  is given.    
    Request :  
-    GET http://localhost:8080/rewards/points?emailId=ashok.rongali@gmail.com  
+    GET http://localhost:8080/rewards/points?customerId=1  
    Response :  
-     ashok.rongali@gmail.com  
-     January: 274 points  
-     February: 16 points  
-     March: 140 points  
-     Total: 430 points
+     {
+    "rewardPointsDTO": {  
+        "customerId": 1,    
+        "name": "Ashok Rongali",  
+        "emailId": "ashok.rongali@gmail.com",  
+        "totalPoints": "Total Reward Points : 430",  
+        "monthlyPoints": {  
+            "January": 274,  
+            "February": 16,  
+            "March": 140  
+        }  
+    },  
+    "customerDetailsDTO": [  
+        {  
+            "serialNumber": "2",  
+            "customerId": 1,  
+            "name": "Ashok Rongali",  
+            "emailId": "ashok.rongali@gmail.com",  
+            "dateOfPurchase": "2026-01-05",  
+            "amount": 145  
+        },  
+        {  
+            "serialNumber": "12",  
+            "customerId": 1,  
+            "name": "Ashok Rongali",  
+            "emailId": "ashok.rongali@gmail.com",  
+            "dateOfPurchase": "2026-01-15",  
+            "amount": 92  
+        },  
+        {  
+            "serialNumber": "22",  
+            "customerId": 1,   
+            "name": "Ashok Rongali",  
+            "emailId": "ashok.rongali@gmail.com",  
+            "dateOfPurchase": "2026-01-25",  
+            "amount": 121  
+        },
+        {
+            "serialNumber": "32",  
+            "customerId": 1,  
+            "name": "Ashok Rongali",  
+            "emailId": "ashok.rongali@gmail.com",  
+            "dateOfPurchase": "2026-02-04",  
+            "amount": 66   
+        },  
+        {    
+            "serialNumber": "52",  
+            "customerId": 1,  
+            "name": "Ashok Rongali",  
+            "emailId": "ashok.rongali@gmail.com",   
+            "dateOfPurchase": "2026-03-05",  
+            "amount": 145  
+        }  
+    ]  
+}  
     
-   Scenario - 2   
-   when email and number of months given. It will calculate todays date and calculate the points before the noOfMonths.  
+   Scenario - 2    
+   when customerId and number of months given. It will calculate todays date and calculate the points before the noOfMonths.  
    Request :  
-     GET http://localhost:8080/rewards/points?emailId=ashok.rongali@gmail.com&noOfMonths=2  
+     GET http://localhost:8080/rewards/points?customerId=1&noOfMonths=1    
    Response :  
-     ashok.rongali@gmail.com    
-     January: 134 points  
-     February: 16 points  
-     March: 140 points  
-     Total: 290 points
+     {  
+    "rewardPointsDTO": {  
+        "customerId": 1,  
+        "name": "Ashok Rongali",  
+        "emailId": "ashok.rongali@gmail.com",  
+        "totalPoints": "Total Reward Points : 140",  
+        "monthlyPoints": {  
+            "March": 140  
+        }  
+    },  
+    "customerDetailsDTO": [  
+        {  
+            "serialNumber": "52",  
+            "customerId": 1,  
+            "name": "Ashok Rongali",  
+            "emailId": "ashok.rongali@gmail.com",  
+            "dateOfPurchase": "2026-03-05",  
+            "amount": 145  
+        }  
+    ]    
+}  
    
    Scenario - 3  
       When fromDate and toDate is given.  
    Request :  
-     GET http://localhost:8080/rewards/points?emailId=ashok.rongali@gmail.com&fromDate=2026-01-28&toDate=2026-03-05
+     GET http://localhost:8080/rewards/points?customerId=1&fromDate=2026-01-11&toDate=2026-02-11  
    Response :  
-     ashok.rongali@gmail.com  
-     February: 16 points  
-     March: 140 points  
-     Total: 156 points  
+     {   
+    "rewardPointsDTO": {   
+        "customerId": 1,  
+        "name": "Ashok Rongali",  
+        "emailId": "ashok.rongali@gmail.com",  
+        "totalPoints": "Total Reward Points : 150",  
+        "monthlyPoints": {  
+            "January": 134,  
+            "February": 16  
+        }  
+    },  
+    "customerDetailsDTO": [  
+        {  
+            "serialNumber": "12",  
+            "customerId": 1,  
+            "name": "Ashok Rongali",  
+            "emailId": "ashok.rongali@gmail.com",  
+            "dateOfPurchase": "2026-01-15",  
+            "amount": 92  
+        },  
+        {  
+            "serialNumber": "22",  
+            "customerId": 1,  
+            "name": "Ashok Rongali",  
+            "emailId": "ashok.rongali@gmail.com",  
+            "dateOfPurchase": "2026-01-25",  
+            "amount": 121  
+        },  
+        {  
+            "serialNumber": "32",  
+            "customerId": 1,   
+            "name": "Ashok Rongali",  
+            "emailId": "ashok.rongali@gmail.com",  
+            "dateOfPurchase": "2026-02-04",  
+            "amount": 66  
+        }  
+    ]  
+}   
   
 2. GET http://localhost:8080/rewards/purchase-details  
    Retrieve purchase details asynchronously.  
-   Parameter: emailId  
+   Parameter: customerId  
    Request :  
-     GET http://localhost:8080/rewards/purchase-details?emailId=ashok.rongali@gmail.com  
+     GET http://localhost:8080/rewards/purchase-details?customerId    
    Response :  
      [  
     {  
@@ -127,4 +227,5 @@ This application has 2 endpoints which will perform two different tasks
 
 #### Testing
 
-Developed Testing using Junit and Mockito  
+Developed Testing using Junit, Mockito and WebMvc    
+
