@@ -19,8 +19,6 @@ import com.infy.rewardpoints.entity.RewardPoints;
 import com.infy.rewardpoints.exception.RewardPointsException;
 import com.infy.rewardpoints.repository.RewardPointsRepository;
 
-
-
 @ExtendWith(MockitoExtension.class)
 class RewardpointsApplicationTests {
 
@@ -58,13 +56,13 @@ class RewardpointsApplicationTests {
                 .thenReturn(List.of(janHigh, janMid, febLow));
         WrapperDTO result = rewardService.calculateRewardPoints(customerId, months, null, to);
         assertNotNull(result);
-        assertNotNull(result.getRewardPoints());
-        assertEquals("Mahesh", result.getRewardPoints().getName());
-        assertEquals(customerId, result.getRewardPoints().getCustomerId());
-        assertEquals("mahesh@gmail.com", result.getRewardPoints().getEmailId());
-        assertEquals("Total Reward Points : 110", result.getRewardPoints().getTotalPoints());
-        assertEquals(110, result.getRewardPoints().getMonthlyPoints().get("January"));
-        assertEquals(0, result.getRewardPoints().getMonthlyPoints().get("February"));
+        assertNotNull(result.getRewardPointsDTO());
+        assertEquals("Mahesh", result.getRewardPointsDTO().getName());
+        assertEquals(customerId, result.getRewardPointsDTO().getCustomerId());
+        assertEquals("mahesh@gmail.com", result.getRewardPointsDTO().getEmailId());
+        assertEquals("Total Reward Points : 110", result.getRewardPointsDTO().getTotalPoints());
+        assertEquals(110, result.getRewardPointsDTO().getMonthlyPoints().get("January"));
+        assertEquals(0, result.getRewardPointsDTO().getMonthlyPoints().get("February"));
 
         ArgumentCaptor<LocalDate> fromCaptor = ArgumentCaptor.forClass(LocalDate.class);
         verify(rewardPointsRepository).findByCustomerIdAndDateOfPurchaseBetween(eq(customerId), fromCaptor.capture(),
@@ -77,17 +75,17 @@ class RewardpointsApplicationTests {
         LocalDate from = LocalDate.of(2026, 1, 1);
         LocalDate to = LocalDate.of(2026, 1, 31);
         RewardPoints purchase = purchase(1, customerId, "Hari.panakala@gmail.com", "Hari", LocalDate.of(2026, 1, 10),
-                55); // 5 pts
+                55);
         when(rewardPointsRepository.findByCustomerIdAndDateOfPurchaseBetween(eq(customerId), eq(from), eq(to)))
                 .thenReturn(List.of(purchase));
         WrapperDTO result = rewardService.calculateRewardPoints(customerId, 99, from, to);
         assertNotNull(result);
-        assertNotNull(result.getRewardPoints());
-        assertEquals("Hari", result.getRewardPoints().getName());
-        assertEquals(customerId, result.getRewardPoints().getCustomerId());
-        assertEquals("Hari.panakala@gmail.com", result.getRewardPoints().getEmailId());
-        assertEquals("Total Reward Points : 5", result.getRewardPoints().getTotalPoints());
-        assertEquals(5, result.getRewardPoints().getMonthlyPoints().get("January"));
+        assertNotNull(result.getRewardPointsDTO());
+        assertEquals("Hari", result.getRewardPointsDTO().getName());
+        assertEquals(customerId, result.getRewardPointsDTO().getCustomerId());
+        assertEquals("Hari.panakala@gmail.com", result.getRewardPointsDTO().getEmailId());
+        assertEquals("Total Reward Points : 5", result.getRewardPointsDTO().getTotalPoints());
+        assertEquals(5, result.getRewardPointsDTO().getMonthlyPoints().get("January"));
         verify(rewardPointsRepository).findByCustomerIdAndDateOfPurchaseBetween(eq(customerId), eq(from), eq(to));
     }
 
@@ -102,6 +100,24 @@ class RewardpointsApplicationTests {
         assertNotNull(dtos);
         assertEquals(2, dtos.size());
         verify(rewardPointsRepository).findByCustomerId(1);
+    }
+
+    @Test
+    void calculateRewardPointsInvalidDateRangeThrowsException() {
+        Integer customerId = 1;
+        LocalDate from = LocalDate.of(2026, 1, 1);
+        LocalDate to = LocalDate.of(2025, 12, 31); // to is before from
+        RewardPointsException ex = assertThrows(RewardPointsException.class,
+                () -> rewardService.calculateRewardPoints(customerId, null, from, to));
+        assertEquals("Enter the Date in correct format", ex.getMessage());
+    }
+
+    @Test
+    void getPurchaseDetailsThrowsExceptionWhenNoPurchases() throws Exception {
+        when(rewardPointsRepository.findByCustomerId(5)).thenReturn(List.of());
+        RewardPointsException ex = assertThrows(RewardPointsException.class,
+                () -> rewardService.getPurchaseDetails(5));
+        assertEquals("No purchase details found for the Customer.", ex.getMessage());
     }
 
     @Test

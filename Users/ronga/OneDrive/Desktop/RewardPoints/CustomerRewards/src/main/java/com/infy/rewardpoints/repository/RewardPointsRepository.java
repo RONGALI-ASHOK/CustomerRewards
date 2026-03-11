@@ -2,7 +2,6 @@ package com.infy.rewardpoints.repository;
 
 import java.time.LocalDate;
 import java.util.List;
-
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 import com.infy.rewardpoints.entity.RewardPoints;

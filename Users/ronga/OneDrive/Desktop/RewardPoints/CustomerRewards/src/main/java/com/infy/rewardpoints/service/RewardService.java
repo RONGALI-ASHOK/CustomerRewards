@@ -8,6 +8,7 @@ import com.infy.rewardpoints.dto.WrapperDTO;
 import com.infy.rewardpoints.exception.RewardPointsException;
 
 public interface RewardService {
+    
     public WrapperDTO calculateRewardPoints(Integer customerId, Integer noOfMonths, LocalDate fromDate ,LocalDate toDate) throws RewardPointsException;
 
     public CompletableFuture<List<CustomerDetailsDTO>> getPurchaseDetails(Integer customerId) throws RewardPointsException;
