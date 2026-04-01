@@ -1,4 +1,5 @@
 package com.charter.rewardpoints.dto;
+
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
@@ -9,7 +10,6 @@ import lombok.Data;
 @Data
 @Schema(description = "details of a single purchase by acustomer")
 public class CustomerPurchaseDetails {
-    
     
     @Schema(description = "Date of the purchase", example = "2024-01-15")
     private LocalDate dateOfPurchase;

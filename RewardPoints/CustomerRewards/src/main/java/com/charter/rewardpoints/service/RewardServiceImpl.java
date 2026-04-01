@@ -12,11 +12,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
-
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
 import org.springframework.stereotype.Service;
-
 import com.charter.rewardpoints.dto.CustomerDetails;
 import com.charter.rewardpoints.dto.CustomerPurchaseDetails;
 import com.charter.rewardpoints.dto.MonthlyRewardPoints;
@@ -41,8 +39,7 @@ public class RewardServiceImpl implements RewardService {
     }
 
     @Override
-    public RewardCalculationResponse calculateRewardPoints(Integer customerId, Integer noOfMonths, LocalDate fromDate,
-            LocalDate toDate) {
+    public RewardCalculationResponse calculateRewardPoints(Integer customerId, Integer noOfMonths, LocalDate fromDate, LocalDate toDate) {
 
         rewardValidator.validateInputParameters(noOfMonths, fromDate, toDate);
         LocalDate[] dateRange = rewardValidator.determineEffectiveDateRange(noOfMonths, fromDate, toDate);
@@ -51,8 +48,7 @@ public class RewardServiceImpl implements RewardService {
         return calculateMonthlyRewardPoints(customerId, dateRange[0], dateRange[1]);
     }
 
-    private RewardCalculationResponse calculateMonthlyRewardPoints(Integer customerId, LocalDate effectiveFrom,
-            LocalDate effectiveTo) {
+    private RewardCalculationResponse calculateMonthlyRewardPoints(Integer customerId, LocalDate effectiveFrom, LocalDate effectiveTo) {
 
         validateCustomerExists(customerId);
         List<RewardPoints> purchaseDetails = fetchPurchaseDetails(customerId, effectiveFrom, effectiveTo);

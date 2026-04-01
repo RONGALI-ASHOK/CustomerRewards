@@ -58,6 +58,7 @@ public class GlobalExceptionHandler {
                 .body(errorBody("The request cannot be processed", List.of(ex.getMessage())));
 
     }
+    
     @ExceptionHandler(Exception.class)
     public ResponseEntity<Map<String, Object>> handleGeneralException(Exception ex) {
         String error = "An unexpected error occurred: Please contact support."; 
