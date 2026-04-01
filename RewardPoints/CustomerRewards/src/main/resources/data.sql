@@ -1,0 +1,58 @@
+INSERT INTO rewardpoints (customerId, emailId, name, dateOfPurchase, amount) VALUES (1, 'ashok.rongali@gmail.com', 'Ashok Rongali', '2025-12-05', 145.00);
+INSERT INTO rewardpoints (customerId, emailId, name, dateOfPurchase, amount) VALUES (1, 'ashok.rongali@gmail.com', 'Ashok Rongali', '2026-01-05', 145.00);
+INSERT INTO rewardpoints (customerId, emailId, name, dateOfPurchase, amount) VALUES (2, 'arun.kumar@outlook.com', 'Arun Kumar', '2026-01-06', 88.00);
+INSERT INTO rewardpoints (customerId, emailId, name, dateOfPurchase, amount) VALUES (3, 'priya.sharma@yahoo.com', 'Priya Sharma', '2026-01-07', 176.50);
+INSERT INTO rewardpoints (customerId, emailId, name, dateOfPurchase, amount) VALUES (4, 'ravi.varma@gmail.com', 'Ravi Varma', '2026-01-08', 59.75);
+INSERT INTO rewardpoints (customerId, emailId, name, dateOfPurchase, amount) VALUES (5, 'sneha.iyer@outlook.com', 'Sneha Iyer', '2026-01-09', 199.99);
+INSERT INTO rewardpoints (customerId, emailId, name, dateOfPurchase, amount) VALUES (6, 'vikram.singh@gmail.com', 'Vikram Singh', '2026-01-10', 72.25);
+INSERT INTO rewardpoints (customerId, emailId, name, dateOfPurchase, amount) VALUES (7, 'meera.nair@yahoo.com', 'Meera Nair', '2026-01-11', 36.50);
+INSERT INTO rewardpoints (customerId, emailId, name, dateOfPurchase, amount) VALUES (8, 'karthik.rao@gmail.com', 'Karthik Rao', '2026-01-12', 151.75);
+INSERT INTO rewardpoints (customerId, emailId, name, dateOfPurchase, amount) VALUES (9, 'rahul.verma@outlook.com', 'Rahul Verma', '2026-01-13', 64.00);
+INSERT INTO rewardpoints (customerId, emailId, name, dateOfPurchase, amount) VALUES (10, 'anjali.menon@gmail.com', 'Anjali Menon', '2026-01-14', 118.50);
+
+INSERT INTO rewardpoints (customerId, emailId, name, dateOfPurchase, amount) VALUES (1, 'ashok.rongali@gmail.com', 'Ashok Rongali', '2026-01-15', 92.25);
+INSERT INTO rewardpoints (customerId, emailId, name, dateOfPurchase, amount) VALUES (2, 'arun.kumar@outlook.com', 'Arun Kumar', '2026-01-16', 134.75);
+INSERT INTO rewardpoints (customerId, emailId, name, dateOfPurchase, amount) VALUES (3, 'priya.sharma@yahoo.com', 'Priya Sharma', '2026-01-17', 47.50);
+INSERT INTO rewardpoints (customerId, emailId, name, dateOfPurchase, amount) VALUES (4, 'ravi.varma@gmail.com', 'Ravi Varma', '2026-01-18', 185.00);
+INSERT INTO rewardpoints (customerId, emailId, name, dateOfPurchase, amount) VALUES (5, 'sneha.iyer@outlook.com', 'Sneha Iyer', '2026-01-19', 96.80);
+INSERT INTO rewardpoints (customerId, emailId, name, dateOfPurchase, amount) VALUES (6, 'vikram.singh@gmail.com', 'Vikram Singh', '2026-01-20', 139.45);
+INSERT INTO rewardpoints (customerId, emailId, name, dateOfPurchase, amount) VALUES (7, 'meera.nair@yahoo.com', 'Meera Nair', '2026-01-21', 28.90);
+INSERT INTO rewardpoints (customerId, emailId, name, dateOfPurchase, amount) VALUES (8, 'karthik.rao@gmail.com', 'Karthik Rao', '2026-01-22', 174.60);
+INSERT INTO rewardpoints (customerId, emailId, name, dateOfPurchase, amount) VALUES (9, 'rahul.verma@outlook.com', 'Rahul Verma', '2026-01-23', 88.75);
+INSERT INTO rewardpoints (customerId, emailId, name, dateOfPurchase, amount) VALUES (10, 'anjali.menon@gmail.com', 'Anjali Menon', '2026-01-24', 153.25);
+ 
+INSERT INTO rewardpoints (customerId, emailId, name, dateOfPurchase, amount) VALUES (1, 'ashok.rongali@gmail.com', 'Ashok Rongali', '2026-01-25', 121.50);
+INSERT INTO rewardpoints (customerId, emailId, name, dateOfPurchase, amount) VALUES (2, 'arun.kumar@outlook.com', 'Arun Kumar', '2026-01-26', 19.99);
+INSERT INTO rewardpoints (customerId, emailId, name, dateOfPurchase, amount) VALUES (3, 'priya.sharma@yahoo.com', 'Priya Sharma', '2026-01-27', 132.85);
+INSERT INTO rewardpoints (customerId, emailId, name, dateOfPurchase, amount) VALUES (4, 'ravi.varma@gmail.com', 'Ravi Varma', '2026-01-28', 57.40);
+INSERT INTO rewardpoints (customerId, emailId, name, dateOfPurchase, amount) VALUES (5, 'sneha.iyer@outlook.com', 'Sneha Iyer', '2026-01-29', 160.75);
+INSERT INTO rewardpoints (customerId, emailId, name, dateOfPurchase, amount) VALUES (6, 'vikram.singh@gmail.com', 'Vikram Singh', '2026-01-30', 44.30);
+INSERT INTO rewardpoints (customerId, emailId, name, dateOfPurchase, amount) VALUES (7, 'meera.nair@yahoo.com', 'Meera Nair', '2026-01-31', 190.20);
+INSERT INTO rewardpoints (customerId, emailId, name, dateOfPurchase, amount) VALUES (8, 'karthik.rao@gmail.com', 'Karthik Rao', '2026-02-01', 73.95);
+INSERT INTO rewardpoints (customerId, emailId, name, dateOfPurchase, amount) VALUES (9, 'rahul.verma@outlook.com', 'Rahul Verma', '2026-02-02', 99.60);
+INSERT INTO rewardpoints (customerId, emailId, name, dateOfPurchase, amount) VALUES (10, 'anjali.menon@gmail.com', 'Anjali Menon', '2026-02-03', 146.80);
+ 
+INSERT INTO rewardpoints (customerId, emailId, name, dateOfPurchase, amount) VALUES (1, 'ashok.rongali@gmail.com', 'Ashok Rongali', '2026-02-04', 66.45);
+INSERT INTO rewardpoints (customerId, emailId, name, dateOfPurchase, amount) VALUES (2, 'arun.kumar@outlook.com', 'Arun Kumar', '2026-02-05', 145.90);
+INSERT INTO rewardpoints (customerId, emailId, name, dateOfPurchase, amount) VALUES (3, 'priya.sharma@yahoo.com', 'Priya Sharma', '2026-02-06', 91.15);
+INSERT INTO rewardpoints (customerId, emailId, name, dateOfPurchase, amount) VALUES (4, 'ravi.varma@gmail.com', 'Ravi Varma', '2026-02-07', 119.55);
+INSERT INTO rewardpoints (customerId, emailId, name, dateOfPurchase, amount) VALUES (5, 'sneha.iyer@outlook.com', 'Sneha Iyer', '2026-02-08', 39.25);
+INSERT INTO rewardpoints (customerId, emailId, name, dateOfPurchase, amount) VALUES (6, 'vikram.singh@gmail.com', 'Vikram Singh', '2026-02-09', 157.80);
+INSERT INTO rewardpoints (customerId, emailId, name, dateOfPurchase, amount) VALUES (7, 'meera.nair@yahoo.com', 'Meera Nair', '2026-02-10', 69.35);
+INSERT INTO rewardpoints (customerId, emailId, name, dateOfPurchase, amount) VALUES (8, 'karthik.rao@gmail.com', 'Karthik Rao', '2026-02-11', 142.70);
+INSERT INTO rewardpoints (customerId, emailId, name, dateOfPurchase, amount) VALUES (9, 'rahul.verma@outlook.com', 'Rahul Verma', '2026-02-12', 80.25);
+INSERT INTO rewardpoints (customerId, emailId, name, dateOfPurchase, amount) VALUES (10, 'anjali.menon@gmail.com', 'Anjali Menon', '2026-02-13', 112.90);
+
+ 
+
+INSERT INTO rewardpoints (customerId, emailId, name, dateOfPurchase, amount) VALUES (1, 'ashok.rongali@gmail.com', 'Ashok Rongali', '2026-03-14', 125.40);
+INSERT INTO rewardpoints (customerId, emailId, name, dateOfPurchase, amount) VALUES (2, 'arun.kumar@outlook.com', 'Arun Kumar', '2026-02-15', 63.75);
+INSERT INTO rewardpoints (customerId, emailId, name, dateOfPurchase, amount) VALUES (3, 'priya.sharma@yahoo.com', 'Priya Sharma', '2026-02-16', 183.50);
+INSERT INTO rewardpoints (customerId, emailId, name, dateOfPurchase, amount) VALUES (4, 'ravi.varma@gmail.com', 'Ravi Varma', '2026-02-17', 51.25);
+INSERT INTO rewardpoints (customerId, emailId, name, dateOfPurchase, amount) VALUES (5, 'sneha.iyer@outlook.com', 'Sneha Iyer', '2026-02-18', 136.85);
+INSERT INTO rewardpoints (customerId, emailId, name, dateOfPurchase, amount) VALUES (6, 'vikram.singh@gmail.com', 'Vikram Singh', '2026-02-19', 76.60);
+INSERT INTO rewardpoints (customerId, emailId, name, dateOfPurchase, amount) VALUES (7, 'meera.nair@yahoo.com', 'Meera Nair', '2026-02-20', 123.95);
+INSERT INTO rewardpoints (customerId, emailId, name, dateOfPurchase, amount) VALUES (8, 'karthik.rao@gmail.com', 'Karthik Rao', '2026-02-21', 16.50);
+INSERT INTO rewardpoints (customerId, emailId, name, dateOfPurchase, amount) VALUES (9, 'rahul.verma@outlook.com', 'Rahul Verma', '2026-02-22', 173.20);
+INSERT INTO rewardpoints (customerId, emailId, name, dateOfPurchase, amount) VALUES (10, 'anjali.menon@gmail.com', 'Anjali Menon', '2026-02-23', 65.80);
+INSERT INTO rewardpoints (customerId, emailId, name, dateOfPurchase, amount) VALUES (1, 'ashok.rongali@gmail.com', 'Ashok Rongali', '2026-03-05', 145.75);
