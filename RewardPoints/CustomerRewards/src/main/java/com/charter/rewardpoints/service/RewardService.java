@@ -1,5 +1,4 @@
 package com.charter.rewardpoints.service;
-
 import java.time.LocalDate;
 import com.charter.rewardpoints.dto.RewardCalculationResponse;
 

@@ -1,5 +1,4 @@
 package com.charter.rewardpoints.entity;
-
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import jakarta.persistence.Column;
@@ -14,6 +13,7 @@ import lombok.Data;
 @Data
 @Table(name="rewardPoints")
 public class RewardPoints {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="serialNumber")

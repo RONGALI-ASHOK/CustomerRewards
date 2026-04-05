@@ -1,5 +1,4 @@
 package com.charter.rewardpoints.controller;
-
 import java.time.LocalDate;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -32,12 +31,12 @@ class RewardPointsControllerTest {
     void testCalculateRewardPointsSuccess() {
 
         RewardCalculationResponse mockResponse = new RewardCalculationResponse();
-        mockResponse.setTotalRewardPoints(150);
+        mockResponse.setTotalRewardPoints(150.0);
         when(rewardService.calculateRewardPoints(1, 2, null, null)).thenReturn(mockResponse);
         ResponseEntity<RewardCalculationResponse> response = controller.calculateRewardPoints(1, 2, null, null);
         assertEquals(200, response.getStatusCode().value());
         assertNotNull(response.getBody());
-        assertEquals(150, response.getBody().getTotalRewardPoints());
+        assertEquals(150.0, response.getBody().getTotalRewardPoints());
         verify(rewardService).calculateRewardPoints(1, 2, null, null);
     }
 

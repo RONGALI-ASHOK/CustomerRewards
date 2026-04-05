@@ -1,5 +1,4 @@
 package com.charter.rewardpoints.validator;
-
 import java.time.LocalDate;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -42,7 +41,6 @@ class RewardPointsValidatorTest {
                                 null
 
                 ));
-
                 assertNotNull(ex.getMessage());
         }
 
@@ -55,7 +53,6 @@ class RewardPointsValidatorTest {
                                 null,
                                 LocalDate.now()
                 ));
-
                 assertNotNull(ex.getMessage());
         }
 

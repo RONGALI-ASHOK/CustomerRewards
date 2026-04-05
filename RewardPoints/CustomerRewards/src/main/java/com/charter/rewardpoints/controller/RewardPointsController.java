@@ -1,5 +1,4 @@
 package com.charter.rewardpoints.controller;
-
 import java.time.LocalDate;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
@@ -26,7 +25,6 @@ import jakarta.validation.constraints.Min;
 public class RewardPointsController {
 
         private final RewardService rewardService;
-
         public RewardPointsController(RewardService rewardService) {
                 this.rewardService = rewardService;
         }
@@ -41,7 +39,7 @@ public class RewardPointsController {
                         ),
                         @ApiResponse(
                                         responseCode = "400",
-                                        description = "Validation failed — noOfMonths must be between 1 and 3"
+                                        description = "Validation failed — noOfMonths must be between 1 and 12"
                         ),
                         @ApiResponse(
                                         responseCode = "404",
@@ -59,11 +57,11 @@ public class RewardPointsController {
                         Integer customerId,
 
                         @Parameter(
-                                        description = "Number of months for which to calculate reward points (Min=1, Max=3)", required = false,
+                                        description = "Number of months for which to calculate reward points (Min=1, Max=12)", required = false,
                                         example = "1")
                         @RequestParam(required = false)
                         @Min(value = 1, message = "Number of months must be atleast 1")
-                        @Max(value = 3, message = "Number of months must be at most 3")
+                        @Max(value = 12, message = "Number of months must be at most 12")
                         Integer noOfMonths,
 
                         @Parameter(

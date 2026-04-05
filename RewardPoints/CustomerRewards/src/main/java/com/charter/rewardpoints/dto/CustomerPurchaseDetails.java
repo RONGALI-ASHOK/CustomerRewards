@@ -1,5 +1,4 @@
 package com.charter.rewardpoints.dto;
-
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;

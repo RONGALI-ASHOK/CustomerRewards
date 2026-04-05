@@ -1,7 +1,5 @@
 package com.charter.rewardpoints.service;
-
 import java.math.BigDecimal;
-import java.math.RoundingMode;
 import java.time.LocalDate;
 import java.time.Month;
 import java.time.YearMonth;
@@ -52,8 +50,8 @@ public class RewardServiceImpl implements RewardService {
 
         validateCustomerExists(customerId);
         List<RewardPoints> purchaseDetails = fetchPurchaseDetails(customerId, effectiveFrom, effectiveTo);
-        Map<YearMonth, Integer> monthlyPoints = calculateMonthlyPoints(purchaseDetails);
-        Integer totalRewardPoints = calculateTotalPoints(monthlyPoints);
+        Map<YearMonth, Double> monthlyPoints = calculateMonthlyPoints(purchaseDetails);
+        Double totalRewardPoints = calculateTotalPoints(monthlyPoints);
 
         return assembleResponse(purchaseDetails, monthlyPoints, totalRewardPoints);
     }
@@ -76,45 +74,49 @@ public class RewardServiceImpl implements RewardService {
         return purchaseDetails;
     }
 
-    private Map<YearMonth, Integer> calculateMonthlyPoints(List<RewardPoints> purchaseDetails) {
+    private Map<YearMonth, Double> calculateMonthlyPoints(List<RewardPoints> purchaseDetails) {
 
-        Map<YearMonth, Integer> monthlyPoints = new HashMap<>();
+        Map<YearMonth, Double> monthlyPoints = new HashMap<>();
 
         for (RewardPoints rewardPoints : purchaseDetails) {
 
-            int points = calculatePointsForPurchase(rewardPoints.getAmount());
+            double points = calculatePointsForPurchase(rewardPoints.getAmount());
             YearMonth ym = YearMonth.from(rewardPoints.getDateOfPurchase());
-            monthlyPoints.merge(ym, points, Integer::sum);
+            monthlyPoints.merge(ym, points, Double::sum);
         }
 
         return monthlyPoints;
     }
+    
+    private static final BigDecimal FIFTY = new BigDecimal("50");
+    private static final BigDecimal ONE_HUNDRED = new BigDecimal("100");
+    private static final BigDecimal TWO = new BigDecimal("2");
 
-    private Integer calculatePointsForPurchase(BigDecimal amount) {
+    private Double calculatePointsForPurchase(BigDecimal amount) {
         if (amount == null) {
             throw new RewardPointsException("Purchase amount is null");
         }
-        if (amount.compareTo(new BigDecimal("100")) > 0) {
-
-            BigDecimal excessOver100 = amount.subtract(new BigDecimal("100")).setScale(0, RoundingMode.HALF_UP);
-            return excessOver100.multiply(new BigDecimal("2")).add(new BigDecimal("50")).intValue();
-        } else if (amount.compareTo(new BigDecimal("50")) > 0) {
-
-            BigDecimal excessOver50 = amount.subtract(new BigDecimal("50")).setScale(0, RoundingMode.HALF_UP);
-            return excessOver50.intValue();
+        if (amount.compareTo(ONE_HUNDRED) > 0) {
+            return amount.subtract(ONE_HUNDRED)
+                .multiply(TWO)
+                .add(FIFTY)
+                .doubleValue();
+        } else if (amount.compareTo(FIFTY) > 0) {
+            return amount.subtract(FIFTY)
+                .doubleValue();
         }
-        return 0;
+        return 0.0;
     }
 
-    private Integer calculateTotalPoints(Map<YearMonth, Integer> monthlyPoints) {
+    private Double calculateTotalPoints(Map<YearMonth, Double> monthlyPoints) {
         return monthlyPoints.values()
                 .stream()
-                .mapToInt(Integer::intValue)
+                .mapToDouble(Double::doubleValue)
                 .sum();
     }
 
     private RewardCalculationResponse assembleResponse(List<RewardPoints> purchaseDetails,
-            Map<YearMonth, Integer> monthlyPoints, Integer totalRewardPoints) {
+            Map<YearMonth, Double> monthlyPoints, Double totalRewardPoints) {
 
         List<MonthlyRewardPoints> monthlyRewardPointsList = convertToMonthlyRewardPointsList(monthlyPoints);
         List<CustomerPurchaseDetails> customerDetailsList = modelMapper.map(purchaseDetails,
@@ -133,7 +135,7 @@ public class RewardServiceImpl implements RewardService {
     }
 
     private List<MonthlyRewardPoints> convertToMonthlyRewardPointsList(
-            Map<YearMonth, Integer> monthlyPoints) {
+            Map<YearMonth, Double> monthlyPoints) {
 
         List<MonthlyRewardPoints> monthlyRewardPointsList = new ArrayList<>();
 

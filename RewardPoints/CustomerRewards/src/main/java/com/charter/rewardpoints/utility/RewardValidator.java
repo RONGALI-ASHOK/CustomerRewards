@@ -1,13 +1,9 @@
 package com.charter.rewardpoints.utility;
-
 import java.time.LocalDate;
-
 import org.springframework.stereotype.Component;
-
 import com.charter.rewardpoints.exception.RewardPointsException;
 
 @Component
-
 public class RewardValidator {
 
     public void validateInputParameters(Integer noOfMonths, LocalDate fromDate, LocalDate toDate){

@@ -62,9 +62,9 @@ This application has 1 endpoint.
 
 {
 
-"customerDetails": {
+    "customerDetails": {
 
-"customerId": 1,
+        "customerId": 1,
 
         "name": "Ashok Rongali",
 
@@ -80,7 +80,7 @@ This application has 1 endpoint.
 
             "month": "January",
 
-            "points": 276
+            "points": 135.25
 
         },
 
@@ -90,7 +90,7 @@ This application has 1 endpoint.
 
             "month": "February",
 
-            "points": 16
+            "points": 16.45
 
         },
 
@@ -100,27 +100,19 @@ This application has 1 endpoint.
 
             "month": "March",
 
-            "points": 242
+            "points": 242.3
 
         }
 
     ],
 
-    "totalRewardPoints": 534,
+    "totalRewardPoints": 394.0,
 
     "customerPurchaseDetails": [
 
         {
 
-            "dateOfPurchase": "2026-01-05",
-
-            "amount": 145.00
-
-        },
-
-       {
-
-           "dateOfPurchase": "2026-01-15",
+            "dateOfPurchase": "2026-01-15",
 
             "amount": 92.25
 
@@ -168,7 +160,7 @@ This application has 1 endpoint.
 
 &nbsp; Request :
 
-&nbsp; GET http://localhost:8080/rewards/points?customerId=1&noOfMonths=1
+&nbsp; GET http://localhost:8080/rewards/points?customerId=1&noOfMonths=2
 
 &nbsp; Response :
 
@@ -192,13 +184,13 @@ This application has 1 endpoint.
 
             "month": "March",
 
-            "points": 242
+            "points": 242.3
 
         }
 
     ],
 
-    "totalRewardPoints": 242,
+    "totalRewardPoints": 242.3,
 
     "customerPurchaseDetails": [
 
@@ -230,7 +222,7 @@ This application has 1 endpoint.
 
 &nbsp; Request :
 
-&nbsp; GET http://localhost:8080/rewards/points?customerId=1\&fromDate=2026-01-19\&toDate=2026-03-19
+&nbsp; GET http://localhost:8080/rewards/points?customerId=6&fromDate=2025-03-19&toDate=2026-03-19
 
 &nbsp; Response :
 
@@ -238,11 +230,11 @@ This application has 1 endpoint.
 
     "customerDetails": {
 
-        "customerId": 1,
+        "customerId": 6,
 
-        "name": "Ashok Rongali",
+        "name": "Vikram Singh",
 
-        "emailId": "ashok.rongali@gmail.com"
+        "emailId": "vikram.singh@gmail.com"
 
     },
 
@@ -254,7 +246,7 @@ This application has 1 endpoint.
 
             "month": "January",
 
-            "points": 94
+            "points": 151.15
 
         },
 
@@ -264,54 +256,53 @@ This application has 1 endpoint.
 
             "month": "February",
 
-            "points": 16
+            "points": 192.2
 
-        },
-
-        {
-
-            "year": 2026,
-
-            "month": "March",
-
-            "points": 242
         }
 
     ],
 
-    "totalRewardPoints": 352,
+    "totalRewardPoints": 343.35,
 
     "customerPurchaseDetails": [
 
         {
 
-            "dateOfPurchase": "2026-01-25",
+            "dateOfPurchase": "2026-01-10",
 
-            "amount": 121.50
-
-        },
-
-        {
-
-            "dateOfPurchase": "2026-02-04",
-
-            "amount": 66.45
+            "amount": 72.25
 
         },
 
         {
 
-            "dateOfPurchase": "2026-03-14",
+            "dateOfPurchase": "2026-01-20",
 
-            "amount": 125.40
+            "amount": 139.45
 
         },
 
         {
 
-            "dateOfPurchase": "2026-03-05",
+            "dateOfPurchase": "2026-01-30",
 
-            "amount": 145.75
+            "amount": 44.30
+
+        },
+
+        {
+
+            "dateOfPurchase": "2026-02-09",
+
+            "amount": 157.80
+
+        },
+
+        {
+
+            "dateOfPurchase": "2026-02-19",
+
+            "amount": 76.60
 
         }
 

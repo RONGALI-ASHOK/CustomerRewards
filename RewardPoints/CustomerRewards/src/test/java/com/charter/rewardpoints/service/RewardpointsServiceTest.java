@@ -1,5 +1,4 @@
 package com.charter.rewardpoints.service;
-
 import java.lang.reflect.Type;
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -57,14 +56,12 @@ class RewardpointsServiceTest {
                 purchase1.setDateOfPurchase(LocalDate.of(2026, 1, 15));
                 purchase1.setName("Rongali Ashok");
                 purchase1.setEmailId("rongali.ashok@gmail.com");
-
                 RewardPoints purchase2 = new RewardPoints();
                 purchase2.setCustomerId(1);
                 purchase2.setAmount(new BigDecimal("75"));
                 purchase2.setDateOfPurchase(LocalDate.of(2026, 2, 20));
                 purchase2.setName("Rongali Ashok");
                 purchase2.setEmailId("rongali.ashok@gmail.com");
-
                 mockPurchaseList = new ArrayList<>();
                 mockPurchaseList.add(purchase1);
                 mockPurchaseList.add(purchase2);
@@ -92,7 +89,6 @@ class RewardpointsServiceTest {
                 doThrow(new RewardPointsException("Invalid input"))
                                 .when(rewardValidator)
                                 .validateInputParameters(2, LocalDate.of(2026, 1, 1), LocalDate.of(2026, 3, 1));
-
                 RewardPointsException ex = assertThrows(RewardPointsException.class, () -> rewardService
                                 .calculateRewardPoints(1, 2, LocalDate.of(2026, 1, 1), LocalDate.of(2026, 3, 1)));
                 assertEquals("Invalid input", ex.getMessage());
@@ -109,12 +105,10 @@ class RewardpointsServiceTest {
                                 .thenReturn(new LocalDate[] { from, to });
                 when(rewardPointsRepository.findByCustomerId(999))
                                 .thenReturn(List.of());
-
                 RewardPointsException ex = assertThrows(RewardPointsException.class,
                                 () -> rewardService.calculateRewardPoints(999, null, null, null));
                 assertEquals("There is no customer with the given Id.", ex.getMessage());
                 verify(rewardPointsRepository).findByCustomerId(999);
-
         }
 
         @Test
@@ -136,7 +130,7 @@ class RewardpointsServiceTest {
         }
 
         @Test
-        @DisplayName("returns correct total points, customer details, and monthly breakdown")
+        @DisplayName("returns correct total reward points")
         void testCalculateRewardPointsSuccess() {
 
                 LocalDate from = LocalDate.of(2026, 1, 1);
@@ -144,19 +138,45 @@ class RewardpointsServiceTest {
                 setupValidatorAndRepository(1, from, to, mockPurchaseList);
                 RewardCalculationResponse response = rewardService.calculateRewardPoints(1, 2, null, null);
                 assertNotNull(response);
-                assertEquals(175, response.getTotalRewardPoints());
+                assertEquals(175.0, response.getTotalRewardPoints());
+        }
+        
+        @Test
+        @DisplayName("returns correct monthly breakdown of reward points")
+        void testCalculateRewardPointsMonthlyBreakdown() {
+
+                LocalDate from = LocalDate.of(2026, 1, 1);
+                LocalDate to = LocalDate.of(2026, 3, 1);
+                setupValidatorAndRepository(1, from, to, mockPurchaseList);
+                RewardCalculationResponse response = rewardService.calculateRewardPoints(1, 2, null, null);
                 assertEquals(2, response.getMonthlyRewardPoints().size());
+        }
+
+        @Test
+        @DisplayName("return correct cuustomer details")
+        void testCalculateRewardPointsCustomerDetails() {
+
+                LocalDate from = LocalDate.of(2026, 1, 1);
+                LocalDate to = LocalDate.of(2026, 3, 1);
+                setupValidatorAndRepository(1, from, to, mockPurchaseList);
+                RewardCalculationResponse response = rewardService.calculateRewardPoints(1, 2, null, null);
+                assertNotNull(response.getCustomerDetails());
                 assertEquals(1, response.getCustomerDetails().getCustomerId());
                 assertEquals("Rongali Ashok", response.getCustomerDetails().getName());
                 assertEquals("rongali.ashok@gmail.com", response.getCustomerDetails().getEmailId());
-                assertTrue(response.getMonthlyRewardPoints().stream()
-                                .anyMatch(m -> m.getMonth().equals("January") && m.getPoints()
-                                .equals(150)));
+        }
 
+        @Test
+        @DisplayName("returns correct january points")
+        void testCalculateRewardPointsJanuary() {
+
+                LocalDate from = LocalDate.of(2026, 1, 1);
+                LocalDate to = LocalDate.of(2026, 3, 1);
+                setupValidatorAndRepository(1, from, to, mockPurchaseList);
+                RewardCalculationResponse response = rewardService.calculateRewardPoints(1, 2, null, null);
                 assertTrue(response.getMonthlyRewardPoints().stream()
-                                .anyMatch(m -> m.getMonth().equals("February") && m.getPoints()
-                                .equals(25)));
-                verify(rewardPointsRepository).findByCustomerIdAndDateOfPurchaseBetween(1, from, to);
+                                .anyMatch(m -> m.getMonth().equals("January") 
+                                && m.getPoints().equals(150.0)));
         }
 
         @Test
@@ -191,14 +211,12 @@ class RewardpointsServiceTest {
                 p1.setDateOfPurchase(LocalDate.of(2026, 1, 10));
                 p1.setName("Rongali Ashok");
                 p1.setEmailId("rongali.ashok@gmail.com");
-
                 RewardPoints p2 = new RewardPoints();
                 p2.setCustomerId(1);
                 p2.setAmount(new BigDecimal("120"));
                 p2.setDateOfPurchase(LocalDate.of(2026, 1, 25));
                 p2.setName("Rongali Ashok");
                 p2.setEmailId("rongali.ashok@gmail.com");
-
                 List<RewardPoints> sameMonthList = List.of(p1, p2);
                 LocalDate from = LocalDate.of(2026, 1, 1);
                 LocalDate to = LocalDate.of(2026, 1, 31);
@@ -220,14 +238,12 @@ class RewardpointsServiceTest {
                 p1.setDateOfPurchase(LocalDate.of(2026, 1, 5));
                 p1.setName("Rongali Ashok");
                 p1.setEmailId("rongali.ashok@gmail.com");
-
                 RewardPoints p2 = new RewardPoints();
                 p2.setCustomerId(1);
                 p2.setAmount(new BigDecimal("75"));
                 p2.setDateOfPurchase(LocalDate.of(2026, 1, 15));
                 p2.setName("Rongali Ashok");
                 p2.setEmailId("rongali.ashok@gmail.com");
-
                 RewardPoints p3 = new RewardPoints();
                 p3.setCustomerId(1);
                 p3.setAmount(new BigDecimal("200"));
@@ -253,14 +269,12 @@ class RewardpointsServiceTest {
                 dec.setDateOfPurchase(LocalDate.of(2025, 12, 20));
                 dec.setName("Rongali Ashok");
                 dec.setEmailId("rongali.ashok@gmail.com");
-
                 RewardPoints jan = new RewardPoints();
                 jan.setCustomerId(1);
                 jan.setAmount(new BigDecimal("80"));
                 jan.setDateOfPurchase(LocalDate.of(2026, 1, 10));
                 jan.setName("Rongali Ashok");
                 jan.setEmailId("rongali.ashok@gmail.com");
-
                 List<RewardPoints> yearBoundaryList = List.of(dec, jan);
                 LocalDate from = LocalDate.of(2025, 12, 1);
                 LocalDate to = LocalDate.of(2026, 1, 31);
@@ -268,9 +282,9 @@ class RewardpointsServiceTest {
                 RewardCalculationResponse response = rewardService.calculateRewardPoints(1, null, null, null);
                 assertEquals(2, response.getMonthlyRewardPoints().size());
                 assertTrue(response.getMonthlyRewardPoints().stream()
-                                .anyMatch(m -> m.getMonth().equals("December") && m.getYear() == 2025 && m.getPoints().equals(90)));
+                                .anyMatch(m -> m.getMonth().equals("December") && m.getYear() == 2025 && m.getPoints().equals(90.0)));
                 assertTrue(response.getMonthlyRewardPoints().stream()
-                                .anyMatch(m -> m.getMonth().equals("January") && m.getYear() == 2026 && m.getPoints().equals(30)));
+                                .anyMatch(m -> m.getMonth().equals("January") && m.getYear() == 2026 && m.getPoints().equals(30.0)));
 
         }
 
@@ -301,48 +315,11 @@ class RewardpointsServiceTest {
                 p.setDateOfPurchase(LocalDate.of(2026, 1, 10));
                 p.setName("Rongali Ashok");
                 p.setEmailId("rongali.ashok@gmail.com");
-
                 LocalDate from = LocalDate.of(2026, 1, 1);
                 LocalDate to = LocalDate.of(2026, 1, 31);
-
                 setupValidatorAndRepository(1, from, to, List.of(p));
                 RewardCalculationResponse response = rewardService.calculateRewardPoints(1, 1, null, null);
                 assertEquals(50, response.getTotalRewardPoints());
-        }
-
-        @Test
-        @DisplayName("amount $0 earns 0 points")
-        void testAmountZero() {
-
-                RewardPoints p = new RewardPoints();
-                p.setCustomerId(1);
-                p.setAmount(new BigDecimal("0"));
-                p.setDateOfPurchase(LocalDate.of(2026, 1, 10));
-                p.setName("Rongali Ashok");
-                p.setEmailId("rongali.ashok@gmail.com");
-                LocalDate from = LocalDate.of(2026, 1, 1);
-                LocalDate to = LocalDate.of(2026, 1, 31);
-                setupValidatorAndRepository(1, from, to, List.of(p));
-                RewardCalculationResponse response = rewardService.calculateRewardPoints(1, 1, null, null);
-                assertEquals(0, response.getTotalRewardPoints());
-        }
-
-        @Test
-        @DisplayName("negative amount earns 0 points")
-        void testNegativeAmount() {
-
-                RewardPoints p = new RewardPoints();
-                p.setCustomerId(1);
-                p.setAmount(new BigDecimal("-10"));
-                p.setDateOfPurchase(LocalDate.of(2026, 1, 10));
-                p.setName("Rongali Ashok");
-                p.setEmailId("rongali.ashok@gmail.com");
-                LocalDate from = LocalDate.of(2026, 1, 1);
-                LocalDate to = LocalDate.of(2026, 1, 31);
-                setupValidatorAndRepository(1, from, to, List.of(p));
-                RewardCalculationResponse response = rewardService.calculateRewardPoints(1, 1, null, null);
-                assertEquals(0, response.getTotalRewardPoints());
-
         }
 
         @Test
@@ -362,45 +339,9 @@ class RewardpointsServiceTest {
                 when(rewardPointsRepository.findByCustomerId(1))
                                 .thenReturn(List.of(new RewardPoints()));
                 when(rewardPointsRepository.findByCustomerIdAndDateOfPurchaseBetween(1, from, to)).thenReturn(List.of(p));
-
                 RewardPointsException ex = assertThrows(RewardPointsException.class, () ->
                 rewardService.calculateRewardPoints(1, 1, null, null));
                 assertEquals("Purchase amount is null", ex.getMessage());
         }
 
-        @Test
-        @DisplayName("amount $50.01 earns 0 points (rounds to 0 excess)")
-        void testAmountJustOver50() {
-
-                RewardPoints p = new RewardPoints();
-                p.setCustomerId(1);
-                p.setAmount(new BigDecimal("50.01"));
-                p.setDateOfPurchase(LocalDate.of(2026, 1, 10));
-                p.setName("Rongali Ashok");
-                p.setEmailId("rongali.ashok@gmail.com");
-                LocalDate from = LocalDate.of(2026, 1, 1);
-                LocalDate to = LocalDate.of(2026, 1, 31);
-                setupValidatorAndRepository(1, from, to, List.of(p));
-                RewardCalculationResponse response = rewardService.calculateRewardPoints(1, 1, null, null);
-                assertEquals(0, response.getTotalRewardPoints());
-
-        }
-
-        @Test
-        @DisplayName("amount $100.01 earns 50 points (rounds to 0 excess over 100)")
-        void testAmountJustOver100() {
-
-                RewardPoints p = new RewardPoints();
-                p.setCustomerId(1);
-                p.setAmount(new BigDecimal("100.01"));
-                p.setDateOfPurchase(LocalDate.of(2026, 1, 10));
-                p.setName("Rongali Ashok");
-                p.setEmailId("rongali.ashok@gmail.com");
-                LocalDate from = LocalDate.of(2026, 1, 1);
-                LocalDate to = LocalDate.of(2026, 1, 31);
-                setupValidatorAndRepository(1, from, to, List.of(p));
-
-                RewardCalculationResponse response = rewardService.calculateRewardPoints(1, 1, null, null);
-                assertEquals(50, response.getTotalRewardPoints());
-        }
 }

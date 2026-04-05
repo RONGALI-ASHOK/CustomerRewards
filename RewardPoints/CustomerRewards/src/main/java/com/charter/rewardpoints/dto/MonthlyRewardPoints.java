@@ -1,5 +1,4 @@
 package com.charter.rewardpoints.dto;
-
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
@@ -15,6 +14,6 @@ public class MonthlyRewardPoints {
     @Schema(description = "Month of the purchase", example = "January")
     private String month;
     
-    @Schema(description = "Reward points earned for the month", example = "50")
-    private Integer points;
+    @Schema(description = "Reward points earned for the month", example = "50.0")
+    private Double points;
 }
