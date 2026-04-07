@@ -3,125 +3,125 @@
     {
       "request": "http://localhost:8080/rewards/points?customerId=1",
       "response": {
-    "customerDetails": {
-        "customerId": 1,
-        "name": "Ashok Rongali",
-        "emailId": "ashok.rongali@gmail.com"
-    },
-    "monthlyRewardPoints": [
-        {
+        "customerDetails": {
+          "customerId": 1,
+          "name": "Ashok Rongali",
+          "emailId": "ashok.rongali@gmail.com"
+        },
+        "monthlyRewardPoints": [
+          {
             "year": 2026,
             "month": "January",
             "points": 135.25
-        },
-        {
+          },
+          {
             "year": 2026,
             "month": "February",
             "points": 16.45
-        },
-        {
+          },
+          {
             "year": 2026,
             "month": "March",
             "points": 242.3
-        }
-    ],
-    "totalRewardPoints": 394.0,
-    "customerPurchaseDetails": [
-        {
+          }
+        ],
+        "totalRewardPoints": 394.0,
+        "customerPurchaseDetails": [
+          {
             "dateOfPurchase": "2026-01-15",
             "amount": 92.25
-        },
-        {
+          },
+          {
             "dateOfPurchase": "2026-01-25",
-            "amount": 121.50
-        },
-        {
+            "amount": 121.5
+          },
+          {
             "dateOfPurchase": "2026-02-04",
             "amount": 66.45
-        },
-        {
+          },
+          {
             "dateOfPurchase": "2026-03-14",
-            "amount": 125.40
-        },
-        {
+            "amount": 125.4
+          },
+          {
             "dateOfPurchase": "2026-03-05",
             "amount": 145.75
-        }
-    ]
-    }
+          }
+        ]
+      }
     },
     {
       "request": "http://localhost:8080/rewards/points?customerId=1&noOfMonths=2",
       "response": {
-    "customerDetails": {
-        "customerId": 1,
-        "name": "Ashok Rongali",
-        "emailId": "ashok.rongali@gmail.com"
-    },
-    "monthlyRewardPoints": [
-        {
+        "customerDetails": {
+          "customerId": 1,
+          "name": "Ashok Rongali",
+          "emailId": "ashok.rongali@gmail.com"
+        },
+        "monthlyRewardPoints": [
+          {
             "year": 2026,
             "month": "March",
             "points": 242.3
-        }
-    ],
-    "totalRewardPoints": 242.3,
-    "customerPurchaseDetails": [
-        {
+          }
+        ],
+        "totalRewardPoints": 242.3,
+        "customerPurchaseDetails": [
+          {
             "dateOfPurchase": "2026-03-14",
-            "amount": 125.40
-        },
-        {
+            "amount": 125.4
+          },
+          {
             "dateOfPurchase": "2026-03-05",
             "amount": 145.75
-        }
-    ]
-  }
+          }
+        ]
+      }
     },
     {
       "request": "http://localhost:8080/rewards/points?customerId=4&fromDate=2025-02-15&toDate=2026-03-11",
       "response": {
-    "customerDetails": {
-        "customerId": 4,
-        "name": "Ravi Varma",
-        "emailId": "ravi.varma@gmail.com"
-    },
-    "monthlyRewardPoints": [
-        {
+        "customerDetails": {
+          "customerId": 4,
+          "name": "Ravi Varma",
+          "emailId": "ravi.varma@gmail.com"
+        },
+        "monthlyRewardPoints": [
+          {
             "year": 2026,
             "month": "January",
             "points": 237.15
-        },
-        {
+          },
+          {
             "year": 2026,
             "month": "February",
             "points": 90.35
-        }
-    ],
-    "totalRewardPoints": 327.5,
-    "customerPurchaseDetails": [
-        {
+          }
+        ],
+        "totalRewardPoints": 327.5,
+        "customerPurchaseDetails": [
+          {
             "dateOfPurchase": "2026-01-08",
             "amount": 59.75
-        },
-        {
+          },
+          {
             "dateOfPurchase": "2026-01-18",
-            "amount": 185.00
-        },
-        {
+            "amount": 185.0
+          },
+          {
             "dateOfPurchase": "2026-01-28",
-            "amount": 57.40
-        },
-        {
+            "amount": 57.4
+          },
+          {
             "dateOfPurchase": "2026-02-07",
             "amount": 119.55
-        },
-        {
+          },
+          {
             "dateOfPurchase": "2026-02-17",
             "amount": 51.25
-        }
-    ]
-    }
+          }
+        ]
+      }
     }
   ]
 }
